@@ -1,0 +1,56 @@
+﻿{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+    {{ block.super }}
+    <!--
+        TODO: remove jquery
+        I have to have to include jQuery when working with angular but couldn't find a faster way to include drag and drop sortable functionality.
+        If I had more time I would remove it and look into http://rubaxa.github.io/Sortable/
+    -->
+    <script src="{% static 'js/lib/jquery-2.1.1.min.js' %}"> </script>
+    <script src="{% static 'js/lib/jquery-ui-1.10.4.custom.min.js' %}"> </script>
+
+    <script src="{% static 'js/lib/underscore.js' %}"> </script>
+
+    <script src="{% static 'js/lib/angular.min.js' %}"> </script>
+    <script src="{% static 'js/lib/angular-route.min.js' %}"> </script>
+    <script src="{% static 'js/lib/angular-resource.min.js' %}"> </script>
+    <script src="{% static 'js/lib/angular-sanitize.min.js' %}"> </script>
+    <script src="{% static 'js/lib/ui-bootstrap-tpls-0.11.0.min.js' %}"> </script>
+    <script src="{% static 'js/lib/sortable.js' %}"> </script>
+
+    <script src="{% static 'js/app.js' %}"> </script>
+
+    <script src="{% static 'js/articleModule/articleFactory.js' %}"> </script>
+    <script src="{% static 'js/articleModule/articleEditController.js' %}"> </script>
+    <script src="{% static 'js/articleModule/adminController.js' %}"> </script>
+    <script src="{% static 'js/articleModule/homeController.js' %}"> </script>
+{% endblock js %}
+
+{% block content %}
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/home"><span class="glyphicon glyphicon-home"></span></a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/admin">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-ng-view="">
+        </div>
+    </div>
+{% endblock content %}
+
+

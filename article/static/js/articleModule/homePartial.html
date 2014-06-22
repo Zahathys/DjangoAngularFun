@@ -1,0 +1,17 @@
+<h3>Article Selection</h3>
+
+
+<div class="col-md-3">
+    <div class="list-group">
+        <a href="" class="list-group-item" data-ng-class="activeClass(article.id)" data-ng-repeat="article in articleList" data-ng-click="selectArticle(article.id)">{{ article.title }}</a>
+    </div>
+</div>
+
+<div class="col-md-9">
+    <div data-ng-repeat="articleContent in articleToDisplay.content | orderBy:'order'">
+        <p data-ng-if="articleContent.type === 'Text'">{{ articleContent.text }}</p>
+        <img class="center-block img-responsive" data-ng-if="articleContent.type === 'Image'" data-ng-src="{{ articleContent.url }}" alt=""/>
+        <!-- TODO for better video support should look into http://www.videogular.com/ -->
+        <iframe class="center-block" data-ng-if="articleContent.type === 'Video'" width="560" height="315" data-ng-src="{{trustSrc(articleContent.url)}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
